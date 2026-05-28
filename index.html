@@ -199,16 +199,19 @@ body{
 
     <h2 class="section-title">Kolonyalar</h2>
 
-     <a href="limon_png.png" target="_blank" style="display: contents; text-decoration: none; color: inherit;">
-    <div class="card">
-        <img src="limon_png.png" alt="Issec Limon Kolonyasi">
-        <div class="card-content">
-            <h3>Limon Kolonyası</h3>
-            <p>Ferahlık veren klasik koku.</p>
-            <div class="price">150 TL</div>
-        </div>
+     <div class="kolonya-kart" onclick="hacimleriGoster(this)">
+    <img src="limon-kolonyasi.jpg" alt="Limon Kolonyası">
+    <h3>Limon Kolonyası</h3>
+    <p>Ferahlık veren klasik koku</p>
+    <div class="fiyat">249 TL</div>
+    
+    <div class="hacim-secenekleri" style="display: none; margin-top: 15px; padding-top: 10px; border-top: 1px solid #eee;">
+        <p style="font-size: 14px; font-weight: bold;">Hacim Seçiniz:</p>
+        <button onclick="secilenHacim('50ml', 249, event)" style="margin: 2px; padding: 5px 10px; cursor: pointer;">50 ml</button>
+        <button onclick="secilenHacim('100ml', 349, event)" style="margin: 2px; padding: 5px 10px; cursor: pointer;">100 ml</button>
+        <button onclick="secilenHacim('200ml', 499, event)" style="margin: 2px; padding: 5px 10px; cursor: pointer;">200 ml</button>
     </div>
-</a>
+</div>
 
 </div>
 
