@@ -1,266 +1,295 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Issec Koku</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issec Koku</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-body{
-    display:flex;
-    background:#f4f4f4;
-}
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
 
-/* SOL MENÜ */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #111;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
 
-.sidebar{
-    width:260px;
-    height:100vh;
-    background:#111;
-    color:white;
-    position:fixed;
-    left:0;
-    top:0;
-    padding:30px 20px;
-}
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    margin-bottom:40px;
-    color:#d4af37;
-}
+        .nav-menu a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-.sidebar ul{
-    list-style:none;
-}
+        .nav-menu a:hover {
+            color: #000;
+        }
 
-.sidebar ul li{
-    margin:20px 0;
-}
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
 
-.sidebar ul li a{
-    color:white;
-    text-decoration:none;
-    font-size:18px;
-    transition:0.3s;
-}
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
 
-.sidebar ul li a:hover{
-    color:#d4af37;
-}
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+        }
 
-/* ANA İÇERİK */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-.main{
-    margin-left:260px;
-    width:100%;
-    padding:40px;
-}
+        .section-title {
+            font-size: 28px;
+            text-align: center;
+            margin: 40px 0 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #222;
+        }
 
-.hero{
-    background:url('https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1200') center/cover;
-    height:300px;
-    border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-size:40px;
-    font-weight:bold;
-    margin-bottom:40px;
-}
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: #333;
+        }
 
-/* KATEGORİLER */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
 
-.section-title{
-    font-size:30px;
-    margin-bottom:20px;
-    color:#222;
-}
+        .product-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
 
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-    margin-bottom:50px;
-}
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
 
-.card{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    transition:0.3s;
-}
+        .product-card a {
+            display: block;
+        }
 
-.card:hover{
-    transform:translateY(-5px);
-}
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
 
-.card img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-}
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
 
-.card-content{
-    padding:20px;
-}
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #111;
+        }
 
-.card-content h3{
-    margin-bottom:10px;
-}
+        .product-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            height: 40px;
+            overflow: hidden;
+        }
 
-.price{
-    color:#d4af37;
-    font-size:22px;
-    font-weight:bold;
-    margin-top:10px;
-}
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+        }
 
-/* İLETİŞİM */
+        .contact-section {
+            background-color: #fff;
+            padding: 40px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
 
-.contact{
-    background:#111;
-    color:white;
-    padding:40px;
-    border-radius:15px;
-    margin-top:50px;
-}
+        .contact-info {
+            margin: 15px 0;
+            font-size: 16px;
+            color: #444;
+        }
 
-.contact h2{
-    margin-bottom:20px;
-}
+        footer {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 60px;
+        }
 
-.contact p{
-    margin:10px 0;
-}
-
-/* MOBİL */
-
-@media(max-width:768px){
-
-    .sidebar{
-        width:100%;
-        height:auto;
-        position:relative;
-    }
-
-    .main{
-        margin-left:0;
-        padding:20px;
-    }
-
-    body{
-        flex-direction:column;
-    }
-}
-
-</style>
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- SOL MENÜ -->
-
-<div class="sidebar">
-
-    <div class="logo">Issec Koku</div>
-
-    <ul>
-        <li><a href="#">Ana Sayfa</a></li>
-        <li><a href="#">Kolonyalar</a></li>
-        <li><a href="#">Parfümler</a></li>
-        <li><a href="#">Yeni Ürünler</a></li>
-        <li><a href="#">Kampanyalar</a></li>
-        <li><a href="#">İletişim</a></li>
-    </ul>
-
-</div>
-
-<!-- ANA ALAN -->
-
-<div class="main">
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Issec Koku</a>
+            <ul class="nav-menu">
+                <li><a href="#">Ana Sayfa</a></li>
+                <li><a href="#kolonyalar">Kolonyalar</a></li>
+                <li><a href="#parfumler">Parfümler</a></li>
+                <li><a href="#yeni-urunler">Yeni Ürünler</a></li>
+                <li><a href="#kampanyalar">Kampanyalar</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </div>
+    </header>
 
     <div class="hero">
-        Premium Koku Dünyası
+        <h1>Issec Koku</h1>
+        <p>Premium Koku Dünyası</p>
     </div>
-       
-    <!-- KOLONYA -->
 
-    <h2 class="section-title">Kolonyalar</h2>
-
-    <div class="card">
-    <img src="limon.png" alt="Issec Limon Kolonyası">
-    <div class="card-content">
-        <h3>Limon Kolonyası</h3>
-        <p>Ferahlık veren klasik koku.</p>
-        <div class="price">249 TL</div>
-    </div>
-</div>
-
-</div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200">
-            <div class="card-content">
-                <h3>Okyanus Kolonyası</h3>
-                <p>Modern ve kalıcı aroma.</p>
-                <div class="price">299 TL</div>
+    <div class="container">
+        
+        <h2 class="section-title" id="kolonyalar">Kolonyalar</h2>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <a href="limon.png.png">
+                    <img src="limon.png.png" alt="Issec Limon Kolonyası" class="product-image">
+                </a>
+                <div class="product-info">
+                    <h3 class="product-name">Limon Kolonyası</h3>
+                    <p class="product-desc">Ferahlık veren klasik koku.</p>
+                    <span class="product-price">150 TL</span>
+                </div>
             </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200" alt="Okyanus Kolonyası" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Okyanus Kolonyası</h3>
+                    <p class="product-desc">Modern ve kalıcı aroma.</p>
+                    <span class="product-price">299 TL</span>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="section-title" id="parfumler">Parfümler</h2>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1200" alt="Luxury Black" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Luxury Black</h3>
+                    <p class="product-desc">Yoğun ve premium erkek parfümü.</p>
+                    <span class="product-price">899 TL</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1200" alt="Rose Gold" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Rose Gold</h3>
+                    <p class="product-desc">Kalıcı kadın parfümü.</p>
+                    <span class="product-price">950 TL</span>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="section-title" id="iletisim">İletişim</h2>
+        <div class="contact-section">
+            <div class="contact-info">📍 İstanbul / Türkiye</div>
+            <div class="contact-info">📞 +90 545 401 62 86</div>
+            <div class="contact-info">✉ Issec@koku.com</div>
         </div>
 
     </div>
 
-    <!-- PARFÜM -->
-
-    <h2 class="section-title">Parfümler</h2>
-
-    <div class="products">
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1200">
-            <div class="card-content">
-                <h3>Luxury Black</h3>
-                <p>Yoğun ve premium erkek parfümü.</p>
-                <div class="price">899 TL</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1200">
-            <div class="card-content">
-                <h3>Rose Gold</h3>
-                <p>Kalıcı kadın parfümü.</p>
-                <div class="price">950 TL</div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- İLETİŞİM -->
-
-    <div class="contact">
-
-        <h2>İletişim</h2>
-
-        <p>📍 İstanbul / Türkiye</p>
-        <p>📞 +90 545 401 62 86</p>
-        <p>✉ Issec@koku.com</p>
-
-    </div>
-
-</div>
+    <footer>
+        <p>&copy; 2026 Issec Koku. Tüm Hakları Saklıdır.</p>
+    </footer>
 
 </body>
 </html>
-```   
